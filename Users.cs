@@ -36,7 +36,7 @@ namespace Registration_Hernan
             
             if(_user == "1" || _user == "2")
             {
-                Console.WriteLine("Estoy en el metodo Chequear Datos");
+                Console.WriteLine("Estoy Chequeando Datos");
                 Information myCurrentInfo = new Information(_user);
                 myCurrentInfo.DisplayInformation();
             }
