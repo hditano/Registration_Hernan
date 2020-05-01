@@ -58,9 +58,9 @@ namespace Registration_Hernan
                 { fileChoosen = userFile1; }
             else if (ChooseUser == 2)
                 { fileChoosen = userFile2; }
-            // else
-                // TODO ERROR HANDLER
-            
+            else
+                throw new ArgumentOutOfRangeException();
+
 
             FileStream fs = new FileStream(fileChoosen, FileMode.Append);
             byte[] bdata = Encoding.Default.GetBytes("Esto es una prueba" + Environment.NewLine);
