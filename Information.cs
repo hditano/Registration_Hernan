@@ -9,7 +9,7 @@ namespace Registration_Hernan
 {
     class Information
     {
-        private int _UserID;
+        private readonly int _UserID;
         private int _TotalRecords;
         private string _OptionDatos;
 
