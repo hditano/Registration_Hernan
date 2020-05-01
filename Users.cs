@@ -9,16 +9,16 @@ namespace Registration_Hernan
 {
     class Users
     {
-        private string _user;
+        private int _user;
         private string _password;
 
-        public Users(string user, string password)
+        public Users(int user, string password)
         {
             this._password = password;
             this._user = user;
         }
 
-        public string User
+        public int User
         {
             get => _user;
             set => _user = value;
@@ -34,7 +34,7 @@ namespace Registration_Hernan
         public void ChequearDatos()
         {
             
-            if(_user == "1" || _user == "2")
+            if(_user == 1 || _user == 2)
             {
                 Console.WriteLine("Estoy Chequeando Datos");
                 Information myCurrentInfo = new Information(_user);
