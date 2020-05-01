@@ -41,42 +41,45 @@ namespace Registration_Hernan
             AddRemove(_OptionDatos);
 
 
-            //PrivateInformation(_UserID);
+            
 
              
         }
 
         // Agrega datos al archivo file
-        public void Add(int ChooseUser)
+        private void Add()
         {
-
-            const string userFile1 = "TextFile1.txt";
-            const string userFile2 = "TextFile2.txt";
-            string fileChoosen = "";
-
-            if (ChooseUser == 1)
-                { fileChoosen = userFile1; }
-            else if (ChooseUser == 2)
-                { fileChoosen = userFile2; }
-            else
-                throw new ArgumentOutOfRangeException();
-
-
-            FileStream fs = new FileStream(fileChoosen, FileMode.Append);
+            // Llama al meotodo ChooseFile y le pasa como parametro el Usuario que eligio para saber que archivo usar. 
+            ChooseFile(_UserID);
+            FileStream fs = new FileStream(ChooseFile(_UserID), FileMode.Append);
             byte[] bdata = Encoding.Default.GetBytes("Esto es una prueba" + Environment.NewLine);
             fs.Write(bdata, 0, bdata.Length);
             fs.Close();
 
-            
+        }
 
+        private void Remove()
+        {
+            File.Delete(ChooseFile(_UserID));
+
+        }
+
+
+        public static string ChooseFile(int number)
+        {
+            switch(number)
+            {
+                case 1:
+                    return "TextFile1.txt";
+                case 2:
+                    return "TextFile2.txt";
+                default:
+                    break;
+            }
+            return null;
         }
 
         // Remueve datos del archivo file
-        public void Remove(int ChooseUser)
-        {
-
-        }
-
 
         public void AddRemove(string Opcion)
         {
@@ -85,17 +88,19 @@ namespace Registration_Hernan
             {
                 case "a":
                     Console.WriteLine("Agregando Datos");
-                    Add(_UserID);
+                    Add();
                     break;
 
                 case "b":
                     Console.WriteLine("Borrando Datos");
-                    Remove(_UserID);
+                    Remove();
                     break;
+
                 case "q":
                     Console.WriteLine("Saliendo del Programa");
                     break;
                 default:
+
                     break;
             }
             
