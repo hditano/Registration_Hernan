@@ -55,9 +55,9 @@ namespace Registration_Hernan
             string fileChoosen = "";
 
             if (ChooseUser == 1)
-                fileChoosen = userFile1;
+                { fileChoosen = userFile1; }
             else if (ChooseUser == 2)
-                fileChoosen = userFile2;
+                { fileChoosen = userFile2; }
             // else
                 // TODO ERROR HANDLER
             
