@@ -42,7 +42,10 @@ namespace Registration_Hernan
                     while (reader.ReadLine() != null) { lines++; }
                 }
             }
-            else { lines = 0; }
+            else 
+            { 
+                lines = 0;
+            }
 
             Console.WriteLine("Total Records: {0}", lines);
             Console.WriteLine("[A]dd new Data | [R]emove Data | [Q]uit");
