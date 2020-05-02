@@ -42,7 +42,7 @@ namespace Registration_Hernan
                     while (reader.ReadLine() != null) { lines++; }
                 }
             }
-            else lines = 0;
+            else { lines = 0; }
 
             Console.WriteLine("Total Records: {0}", lines);
             Console.WriteLine("[A]dd new Data | [R]emove Data | [Q]uit");
@@ -68,8 +68,10 @@ namespace Registration_Hernan
         {
             string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
             foreach (string lines in readTxtFile)
+            {
                 Console.WriteLine(lines);
-           // File.Delete(ChooseFile(_UserID));
+            }
+                // File.Delete(ChooseFile(_UserID));
 
         }
 
