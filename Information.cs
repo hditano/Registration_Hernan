@@ -83,8 +83,9 @@ namespace Registration_Hernan
                 {
                     Console.WriteLine($"{j}         {newList[j]}");
                 }
-
-            
+            Users myInfo = new Users(_UserID, "123");
+            Console.Clear();
+            myInfo.ChequearDatos();            
                 // File.Delete(ChooseFile(_UserID));
 
             }

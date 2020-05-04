@@ -18,8 +18,8 @@ namespace Registration_Hernan
             {
                 Console.WriteLine("Bienvenidos al Registro. Por Favor elija un Usuario: ");
                 _eleccion = Console.ReadLine();
-                Console.WriteLine("Ingrese el Password: ");
-                _password = Console.ReadLine();
+                Console.WriteLine("Ingrese el Password: {0}", string.Replace("", "*"));
+                _password = Console.ReadLine() ;
                 Users myInfo = new Users(Convert.ToInt32(_eleccion), _password);
                 myInfo.ChequearDatos();
                 
