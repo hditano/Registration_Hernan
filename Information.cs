@@ -67,17 +67,27 @@ namespace Registration_Hernan
 
         }
 
-        private void Remove()
-        {
-            string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
-            Console.WriteLine("Index   |   Text");
-            for(int i = 0; i < readTxtFile.Length; i++)
+            private void Remove()
             {
-                Console.WriteLine($"{i}         {readTxtFile[i]}");
-            }
+                string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
+                Console.WriteLine("Index   |   Text");
+                for(int i = 0; i < readTxtFile.Length; i++)
+                {
+                    Console.WriteLine($"{i}         {readTxtFile[i]}");
+                }
+                Console.Write("Elegir que Index quiere borrar: ");
+                var input = Convert.ToInt32(Console.ReadLine());
+                var newList = new List<string>(readTxtFile);
+                newList.RemoveAt(input);
+                for(int j = 0; j < newList.Count; j++)
+                {
+                    Console.WriteLine($"{j}         {newList[j]}");
+                }
+
+            
                 // File.Delete(ChooseFile(_UserID));
 
-        }
+            }
 
 
         public static string ChooseFile(int number)
