@@ -31,7 +31,7 @@ namespace Registration_Hernan
         public void DisplayInformation()
         {
             // Cuenta las lineas que tiene el archivo y las almacena en una variable
-            int lines = 0;
+            _TotalRecords = 0;
 
             Console.WriteLine("User's ID: {0}", _UserID);
 
@@ -39,15 +39,15 @@ namespace Registration_Hernan
             {
                 using (TextReader reader = File.OpenText(ChooseFile(_UserID)))
                 {
-                    while (reader.ReadLine() != null) { lines++; }
+                    while (reader.ReadLine() != null) { _TotalRecords++; }
                 }
             }
             else 
             { 
-                lines = 0;
+                _TotalRecords = 0;
             }
 
-            Console.WriteLine("Total Records: {0}", lines);
+            Console.WriteLine("Total Records: {0}", _TotalRecords);
             Console.WriteLine("[A]dd new Data | [R]emove Data | [Q]uit");
             _OptionDatos = Console.ReadLine().ToLower();
             // Pasa la opcion elegida (Add or Remove) al metodo AddRemove
@@ -61,7 +61,7 @@ namespace Registration_Hernan
             // Llama al meotodo ChooseFile y le pasa como parametro el Usuario que eligio para saber que archivo usar. 
             ChooseFile(_UserID);
             FileStream fs = new FileStream(ChooseFile(_UserID), FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
-            byte[] bdata = Encoding.Default.GetBytes("Esto es una prueba" + Environment.NewLine);
+            byte[] bdata = Encoding.Default.GetBytes("This is a Test" + Environment.NewLine);
             fs.Write(bdata, 0, bdata.Length);
             fs.Close();
 
@@ -70,9 +70,10 @@ namespace Registration_Hernan
         private void Remove()
         {
             string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
-            foreach (string lines in readTxtFile)
+            Console.WriteLine("Index   |   Text");
+            for(int i = 0; i < readTxtFile.Length; i++)
             {
-                Console.WriteLine(lines);
+                Console.WriteLine($"{i}         {readTxtFile[i]}");
             }
                 // File.Delete(ChooseFile(_UserID));
 
@@ -101,21 +102,23 @@ namespace Registration_Hernan
             switch (Opcion)
             {
                 case "a":
-                    Console.WriteLine("Agregando Datos");
+                    Console.WriteLine("Add Record");
                     Add();
                     break;
 
                 case "r":
-                    Console.WriteLine("Borrando Datos");
+                    Console.WriteLine("Remove Record");
                     Remove();
                     break;
 
                 case "q":
-                    Console.WriteLine("Saliendo del Programa");
+                    Console.WriteLine("Quiting");
                     break;
                 default:
 
                     break;
+
+                    
             }
             
             

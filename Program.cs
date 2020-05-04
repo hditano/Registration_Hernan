@@ -20,9 +20,10 @@ namespace Registration_Hernan
                 _eleccion = Console.ReadLine();
                 Console.WriteLine("Ingrese el Password: ");
                 _password = Console.ReadLine();
-
                 Users myInfo = new Users(Convert.ToInt32(_eleccion), _password);
                 myInfo.ChequearDatos();
+                
+
             } while ((_eleccion == "1") && (_eleccion == "2"));
         }
     }
