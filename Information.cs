@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace Registration_Hernan
             }
 
             Console.WriteLine("Total Records: {0}", _TotalRecords);
-            Console.WriteLine("[A]dd new Data | [R]emove Data | [Q]uit");
+            Console.WriteLine("[A]dd new Data | [R]emove Data | [D]isplay Records | [Q]uit");
             _OptionDatos = Console.ReadLine().ToLower();
             // Pasa la opcion elegida (Add or Remove) al metodo AddRemove
             AddRemove(_OptionDatos);
@@ -81,14 +82,25 @@ namespace Registration_Hernan
                 newList.RemoveAt(input);
                 for(int j = 0; j < newList.Count; j++)
                 {
-                    Console.WriteLine($"{j}         {newList[j]}");
+                    Console.WriteLine($"{j}    {newList[j]}");
                 }
-            Users myInfo = new Users(_UserID, "123");
             Console.Clear();
-            myInfo.ChequearDatos();            
+            Start startR = new Start();
+            startR.StartU();
                 // File.Delete(ChooseFile(_UserID));
 
             }
+
+            private void DisplayRecords(int a)
+            {
+            string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
+            Console.WriteLine("Index   |   Text");
+            for (int i = 0; i < readTxtFile.Length; i++)
+            {
+                Console.WriteLine($"{i}         {readTxtFile[i]}");
+            }
+
+        }
 
 
         public static string ChooseFile(int number)
@@ -121,7 +133,10 @@ namespace Registration_Hernan
                     Console.WriteLine("Remove Record");
                     Remove();
                     break;
-
+                case "d":
+                    Console.WriteLine("Display Record");
+                    DisplayRecords(_UserID);
+                    break;
                 case "q":
                     Console.WriteLine("Quiting");
                     break;
