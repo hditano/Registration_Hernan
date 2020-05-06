@@ -65,6 +65,7 @@ namespace Registration_Hernan
             byte[] bdata = Encoding.Default.GetBytes("This is a Test" + Environment.NewLine);
             fs.Write(bdata, 0, bdata.Length);
             fs.Close();
+            DisplayRecords(_userId);
 
         }
 
