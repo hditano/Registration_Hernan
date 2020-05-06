@@ -40,7 +40,7 @@ namespace Registration_Hernan
             {
                 using (TextReader reader = File.OpenText(ChooseFile(_UserID)))
                 {
-                    while (reader.ReadLine() != null) { _TotalRecords++; }
+                    while (reader.ReadLine() != null) ;
                 }
             }
             else 
@@ -68,30 +68,26 @@ namespace Registration_Hernan
 
         }
 
-            private void Remove()
+        private void Remove()
+        {
+
+            string txt = "TextFile1.txt";
+            
+            string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
+            List<string> newList = new List<string>(readTxtFile);
+            Console.WriteLine("Index   |   Text");
+            for (int i = 0; i < readTxtFile.Length; i++)
             {
-                string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
-                Console.WriteLine("Index   |   Text");
-                for(int i = 0; i < readTxtFile.Length; i++)
-                {
-                    Console.WriteLine($"{i}         {readTxtFile[i]}");
-                }
-                Console.Write("Elegir que Index quiere borrar: ");
-                var input = Convert.ToInt32(Console.ReadLine());
-                var newList = new List<string>(readTxtFile);
-                newList.RemoveAt(input);
-                for(int j = 0; j < newList.Count; j++)
-                {
-                    Console.WriteLine($"{j}    {newList[j]}");
-                }
-            Console.Clear();
-            Start startR = new Start();
-            startR.StartU();
-                // File.Delete(ChooseFile(_UserID));
-
+                Console.WriteLine($"{i}         {readTxtFile[i]}");
             }
+            Console.Write("Choose # Index to delete: ");
+            var index = int.Parse(Console.ReadLine());
+            newList.RemoveAt(index);
+            string[] newArray = new string[newList.Count];
+            File.WriteAllLines(txt, newList);
+        }
 
-            private void DisplayRecords(int a)
+        private void DisplayRecords(int a)
             {
             string[] readTxtFile = File.ReadAllLines(ChooseFile(_UserID));
             Console.WriteLine("Index   |   Text");
@@ -99,8 +95,10 @@ namespace Registration_Hernan
             {
                 Console.WriteLine($"{i}         {readTxtFile[i]}");
             }
+            Console.ReadLine();
+            Console.Clear();
 
-        }
+            }
 
 
         public static string ChooseFile(int number)
