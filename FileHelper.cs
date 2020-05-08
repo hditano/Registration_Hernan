@@ -11,34 +11,37 @@ namespace Registration_Hernan
         // Proprieties
         private static int _userId;
         private static string _file;
-        
+
 
         public static void DRecords(int user, string file)
         {
             string[] readTxtFile = File.ReadAllLines(file);
             Console.WriteLine("Index   |   Text");
-            for (int i = 0; i < readTxtFile.Length; i++)
-            {
-                Console.WriteLine($"{i}         {readTxtFile[i]}");
-            }
+            ForLoop(readTxtFile);
             
         }
 
         public static void DRemove(int user, string file)
         {
-            var txt = "TextFile1.txt";
+            string txt = "TextFile1.txt";
             
             var readTxtFile = File.ReadAllLines(file);
             var newList = new List<string>(readTxtFile);
             Console.WriteLine("Index   |   Text");
-            for (var i = 0; i < readTxtFile.Length; i++)
-            {
-                Console.WriteLine($"{i}         {readTxtFile[i]}");
-            }
+            ForLoop(readTxtFile);
             Console.Write("Choose # Index to delete: ");
             var index = int.Parse(Console.ReadLine());
             newList.RemoveAt(index);
             File.WriteAllLines(txt, newList);
+            
+        }
+
+        private static void ForLoop(string[] fileRead)
+        {
+            for (var i = 0; i < fileRead.Length; i++)
+            {
+                Console.WriteLine($"{i}         {fileRead[i]}");
+            }
         }
 
     }

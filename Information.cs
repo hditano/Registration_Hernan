@@ -71,6 +71,7 @@ namespace Registration_Hernan
             {
                 FileHelper.DRecords(_userId, ChooseFile(_userId));
                 Console.ReadLine();
+                
 
             }
 
