@@ -9,25 +9,18 @@ using System.Threading.Tasks;
 namespace Registration_Hernan
 {
     class Information
-    {
+    {    
+        // Properties
         private readonly int _userId;
         private int _totalRecords;
         private string _optionDatos;
 
+        // Constructor
         public Information(int user)
         {
             this._userId = user;
         }
-        public int UserId
-        {
-            get => _userId;
-        }
-
-
-        public int TotalRecords
-        {
-            get => _totalRecords;
-        }
+        
 
         public void DisplayInformation()
         {
@@ -40,7 +33,7 @@ namespace Registration_Hernan
             {
                 using (TextReader reader = File.OpenText(ChooseFile(_userId)))
                 {
-                    
+                    //TODO finish reader call out
                 }
             }
             else 
@@ -64,39 +57,20 @@ namespace Registration_Hernan
             FileStream fs = new FileStream(ChooseFile(_userId), FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
             byte[] bdata = Encoding.Default.GetBytes("This is a Test" + Environment.NewLine);
             fs.Write(bdata, 0, bdata.Length);
-            fs.Close();
-            DisplayRecords(_userId);
+            fs.Close(); 
+            FileHelper.DRecords(_userId,(ChooseFile(_userId)));
 
         }
 
         private void Remove()
         {
-
-            string txt = "TextFile1.txt";
-            
-            string[] readTxtFile = File.ReadAllLines(ChooseFile(_userId));
-            List<string> newList = new List<string>(readTxtFile);
-            Console.WriteLine("Index   |   Text");
-            for (int i = 0; i < readTxtFile.Length; i++)
-            {
-                Console.WriteLine($"{i}         {readTxtFile[i]}");
-            }
-            Console.Write("Choose # Index to delete: ");
-            var index = int.Parse(Console.ReadLine());
-            newList.RemoveAt(index);
-            File.WriteAllLines(txt, newList);
+            FileHelper.DRemove(_userId, ChooseFile(_userId));
         }
 
-        private void DisplayRecords(int a)
+        private void DisplayRecords(int user)
             {
-            string[] readTxtFile = File.ReadAllLines(ChooseFile(_userId));
-            Console.WriteLine("Index   |   Text");
-            for (int i = 0; i < readTxtFile.Length; i++)
-            {
-                Console.WriteLine($"{i}         {readTxtFile[i]}");
-            }
-            Console.ReadLine();
-            Console.Clear();
+                FileHelper.DRecords(_userId, ChooseFile(_userId));
+                Console.ReadLine();
 
             }
 
@@ -109,8 +83,6 @@ namespace Registration_Hernan
                     return "TextFile1.txt";
                 case 2:
                     return "TextFile2.txt";
-                default:
-                    break;
             }
             return null;
         }
