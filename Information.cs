@@ -50,17 +50,8 @@ namespace Registration_Hernan
         }
 
         // Agrega datos al archivo file
-        private void Add()
-        {
-            // Llama al metodo ChooseFile y le pasa como parametro el Usuario que eligio para saber que archivo usar. 
-            ChooseFile(_userId);
-            FileStream fs = new FileStream(ChooseFile(_userId), FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
-            byte[] bdata = Encoding.Default.GetBytes("This is a Test" + Environment.NewLine);
-            fs.Write(bdata, 0, bdata.Length);
-            fs.Close(); 
-            FileHelper.DRecords(_userId,(ChooseFile(_userId)));
 
-        }
+        
 
         private void Remove()
         {
@@ -71,12 +62,11 @@ namespace Registration_Hernan
             {
                 FileHelper.DRecords(_userId, ChooseFile(_userId));
                 Console.ReadLine();
-                
 
             }
 
 
-        private static string ChooseFile(int number)
+        public static string ChooseFile(int number)
         {
             switch(number)
             {

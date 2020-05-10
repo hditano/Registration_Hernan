@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Management.Instrumentation;
 using System.Reflection;
+using System.Text;
 
 namespace Registration_Hernan
 {
@@ -33,6 +34,16 @@ namespace Registration_Hernan
             var index = int.Parse(Console.ReadLine());
             newList.RemoveAt(index);
             File.WriteAllLines(txt, newList);
+            
+        }
+
+        public static void DAdd(int user)
+        {
+            var myFile = Information.ChooseFile(user);
+            FileStream fs = new FileStream(myFile, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
+            byte[] bdata = Encoding.Default.GetBytes("This is a Test" + Environment.NewLine);
+            fs.Write(bdata, 0, bdata.Length);
+            fs.Close(); 
             
         }
 
