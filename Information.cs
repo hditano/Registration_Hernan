@@ -22,16 +22,16 @@ namespace Registration_Hernan
         }
         
 
-        public void DisplayInformation()
+        public void DisplayInformation(int user)
         {
             // Cuenta las lineas que tiene el archivo y las almacena en una variable
             _totalRecords = 0;
 
-            Console.WriteLine("User's ID: {0}", _userId);
+            Console.WriteLine("User's ID: {0}", user);
 
-            if (File.Exists(ChooseFile(_userId)))
+            if (File.Exists(ChooseFile(user)))
             {
-                using (TextReader reader = File.OpenText(ChooseFile(_userId)))
+                using (TextReader reader = File.OpenText(ChooseFile(user)))
                 {
                     //TODO finish reader call out
                 }
@@ -50,8 +50,12 @@ namespace Registration_Hernan
         }
 
         // Agrega datos al archivo file
-
-        
+        private void Add()
+        {
+            // Llama al metodo ChooseFile y le pasa como parametro el Usuario que eligio para saber que archivo usar. 
+            FileHelper.DAdd(_userId); 
+            FileHelper.DRecords(_userId,(ChooseFile(_userId)));
+        }
 
         private void Remove()
         {

@@ -27,7 +27,7 @@ namespace Registration_Hernan
             {
                 Console.WriteLine("Estoy Chequeando Datos");
                 var myCurrentInfo = new Information(User);
-                myCurrentInfo.DisplayInformation();
+                myCurrentInfo.DisplayInformation(User);
             }
             else
             {
