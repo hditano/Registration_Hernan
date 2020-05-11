@@ -22,7 +22,7 @@ namespace Registration_Hernan
         }
         
 
-        public void DisplayInformation(int user)
+        public void DisplayInformation(int user, string path)
         {
             // Cuenta las lineas que tiene el archivo y las almacena en una variable
             _totalRecords = 0;
@@ -53,7 +53,7 @@ namespace Registration_Hernan
         private void Add()
         {
             // Llama al metodo ChooseFile y le pasa como parametro el Usuario que eligio para saber que archivo usar. 
-            FileHelper.DAdd(_userId); 
+            FileHelper.DAdd(_userId, ChooseFile(_userId)); 
             FileHelper.DRecords(_userId,(ChooseFile(_userId)));
         }
 
@@ -64,7 +64,7 @@ namespace Registration_Hernan
 
         private void DisplayRecords(int user)
             {
-                FileHelper.DRecords(_userId, ChooseFile(_userId));
+                FileHelper.DRecords(user, ChooseFile(user));
                 Console.ReadLine();
 
             }

@@ -16,6 +16,7 @@ namespace Registration_Hernan
         }
 
         private int User { get; set; }
+        private string path { get; }
 
         public string Password { get; set; }
 
@@ -27,7 +28,7 @@ namespace Registration_Hernan
             {
                 Console.WriteLine("Estoy Chequeando Datos");
                 var myCurrentInfo = new Information(User);
-                myCurrentInfo.DisplayInformation(User);
+                myCurrentInfo.DisplayInformation(User,path );
             }
             else
             {
