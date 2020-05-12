@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace Registration_Hernan
         public void DisplayInformation(int user, string path)
         {
             // Cuenta las lineas que tiene el archivo y las almacena en una variable
-            _totalRecords = 0;
+           
 
             Console.WriteLine("User's ID: {0}", user);
 
@@ -33,15 +34,16 @@ namespace Registration_Hernan
             {
                 using (TextReader reader = File.OpenText(ChooseFile(user)))
                 {
-                    //TODO finish reader call out
+                    
                 }
+                
             }
             else 
             { 
-                _totalRecords = 0;
+                Console.WriteLine("El Archivo no existe");
             }
 
-            Console.WriteLine("Total Records: {0}", _totalRecords);
+            Console.WriteLine("Total Records: {0}", FileHelper.DTotalRecords(user, ChooseFile(user)));
             Console.WriteLine("[A]dd new Data | [R]emove Data | [D]isplay Records | [Q]uit");
             _optionDatos = Console.ReadLine().ToLower();
             // Pasa la opcion elegida (Add or Remove) al metodo AddRemove

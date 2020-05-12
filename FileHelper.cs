@@ -53,8 +53,21 @@ namespace Registration_Hernan
             
         }
 
+        public static int DTotalRecords(int user, string path)
+        {
+            int _TotalRecords = 0;
+            var totalRecords = File.ReadAllLines(path);
+            for (int i = 0; i < totalRecords.Length; i++)
+            {
+                _TotalRecords++;
+            }
+
+            return _TotalRecords;
+        }
+
         private static void ForLoop(string[] fileRead)
         {
+            
             for (var i = 0; i < fileRead.Length; i++)
             {
                 Console.WriteLine($"{i}         {fileRead[i]}");

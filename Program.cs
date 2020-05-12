@@ -23,7 +23,7 @@ namespace Registration_Hernan
                 myInfo.ChequearDatos();
                 
 
-            } while ((eleccion == "1") && (eleccion == "2"));
+            } while ((eleccion != "1") && (eleccion != "2"));
            
         }
     }
