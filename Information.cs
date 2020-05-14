@@ -40,11 +40,11 @@ namespace Registration_Hernan
             }
             
 
-                Console.WriteLine("Total Records: {0}", FileHelper.DTotalRecords());
-                Console.WriteLine("[A]dd new Data | [R]emove Data | [D]isplay Records | [Q]uit");
-                _optionDatos = Console.ReadLine().ToLower();
-                // Pasa la opcion elegida (Add or Remove) al metodo AddRemove
-                AddRemove(_optionDatos);
+            Console.WriteLine("Total Records: {0}", FileHelper.DTotalRecords());
+            Console.WriteLine("[A]dd new Data | [R]emove Data | [D]isplay Records | [C]hange User | [Q]uit");
+            _optionDatos = Console.ReadLine().ToLower();
+            // Pasa la opcion elegida (Add or Remove) al metodo AddRemove
+            AddRemove(_optionDatos);
             
         }
 
@@ -60,12 +60,20 @@ namespace Registration_Hernan
         {
             FileHelper.DRemove(Users.Userid, Users.Path);
         }
+        
+        private void ChangeUser()
+        {
+            Console.WriteLine("Type your UserID: ");
+            var newUser = Convert.ToInt32(Console.ReadLine());
+            Users myNewUser = new Users();
+            DisplayInformation(newUser);
+        }
 
         private void DisplayRecords()
             {
                 
                 FileHelper.DRecords(Users.Userid, Users.Path);
-                Console.ReadLine();
+                
 
             }
 
@@ -85,6 +93,10 @@ namespace Registration_Hernan
                 case "r":
                     Console.WriteLine("Remove Record");
                     Remove();
+                    break;
+                case "c":
+                    Console.WriteLine("Change User");
+                    ChangeUser();
                     break;
                 case "d":
                     Console.WriteLine("Display Record");
