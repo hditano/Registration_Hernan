@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -9,26 +10,60 @@ namespace Registration_Hernan
 {
     class Users
     {
-        public Users(int user, string password)
+        private static int _userId;
+        private static string _path;
+        
+        
+        public static int Userid
         {
-            this.Password = password;
-            this.User = user;
+            set
+            {
+                if(false)
+                {
+                    Console.WriteLine("Wrong User");
+                }
+
+                _userId = value;
+            }
+
+            get
+            {
+                return _userId;
+            }
+        }
+        
+        public static string Path
+        {
+            set
+            {
+                switch (value)
+                {
+                    case "1":
+                        _path = "TextFile1.txt";
+                        break;
+                    case "2":
+                        _path = "TextFile2.txt";
+                        break;
+                    default:
+                        Console.WriteLine("Wrong File Chosen");
+                        break;
+                }
+            }
+            get
+            {
+                return _path;
+            }
         }
 
-        private int User { get; set; }
-        private string path { get; }
-
-        public string Password { get; set; }
-
-
-        public void ChequearDatos()
+        public static void ChequearDatos(int u)
         {
-            
-            if(User == 1 || User == 2)
+
+
+            if (u == 1 || u == 2) 
             {
                 Console.WriteLine("Estoy Chequeando Datos");
-                var myCurrentInfo = new Information(User);
-                myCurrentInfo.DisplayInformation(User,path );
+                var myCurrentInfo = new Information();
+                myCurrentInfo.DisplayInformation(Userid);
             }
             else
             {

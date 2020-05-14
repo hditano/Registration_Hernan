@@ -15,13 +15,16 @@ namespace Registration_Hernan
 
             do
             {
-                Console.WriteLine("Bienvenidos al Registro. Por Favor elija un Usuario: ");
-                eleccion = Console.ReadLine();
-                Console.WriteLine("Ingrese el Password: ");
-                password = Console.ReadLine() ;
-                Users myInfo = new Users(Convert.ToInt32(eleccion), password);
-                myInfo.ChequearDatos();
                 
+                Console.WriteLine("Welcome to the Registry System. Please Choose an User: ");
+                eleccion = Console.ReadLine();
+                Console.WriteLine("Please type in your Password: ");
+                password = Console.ReadLine();
+                Users.Userid = Convert.ToInt32(eleccion);
+                Users.Path = eleccion;
+                Users.ChequearDatos(Convert.ToInt32(eleccion));
+                
+
 
             } while ((eleccion != "1") && (eleccion != "2"));
            
