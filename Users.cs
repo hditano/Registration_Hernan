@@ -12,15 +12,24 @@ namespace Registration_Hernan
     {
         private static int _userId;
         private static string _path;
+
+        private enum Pass
+        {
+            Pass1 = 123,
+            Pass2 = 3030
+        }
+        
+        
         
         
         public static int Userid
         {
             set
             {
-                if(false)
+                if(Userid == 1 && Userid == 2)
                 {
-                    Console.WriteLine("Wrong User");
+                    Console.WriteLine("Access Granted");
+                    Console.WriteLine("Loading Data..");
                 }
 
                 _userId = value;
@@ -31,6 +40,7 @@ namespace Registration_Hernan
                 return _userId;
             }
         }
+
         
         public static string Path
         {

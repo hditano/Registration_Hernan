@@ -65,7 +65,8 @@ namespace Registration_Hernan
         {
             Console.WriteLine("Type your UserID: ");
             var newUser = Convert.ToInt32(Console.ReadLine());
-            Users myNewUser = new Users();
+            Users.Userid = newUser;
+            Users.Path = Convert.ToString(newUser);
             DisplayInformation(newUser);
         }
 
