@@ -12,7 +12,7 @@ namespace Registration_Hernan
         {
             string eleccion;
             string password;
-
+            
             do
             {
                 

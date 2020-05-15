@@ -29,10 +29,8 @@ namespace Registration_Hernan
                     Console.WriteLine("Checkin ....");
                     Console.WriteLine("Access not granted");
                     
+
                 }
-
-                
-
 
             }
 
