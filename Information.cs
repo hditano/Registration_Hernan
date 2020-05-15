@@ -34,10 +34,7 @@ namespace Registration_Hernan
                 }
                 
             }
-            else 
-            { 
-                Console.WriteLine("El Archivo no existe");
-            }
+
             
 
             Console.WriteLine("Total Records: {0}", FileHelper.DTotalRecords());

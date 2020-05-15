@@ -22,7 +22,7 @@ namespace Registration_Hernan
                 password = Console.ReadLine();
                 Users.Userid = Convert.ToInt32(eleccion);
                 Users.Path = eleccion;
-                Users.ChequearDatos(Convert.ToInt32(eleccion));
+                Users.ChequearDatos(Users.Userid);
                 
 
 

@@ -12,27 +12,28 @@ namespace Registration_Hernan
     {
         private static int _userId;
         private static string _path;
-
-        private enum Pass
-        {
-            Pass1 = 123,
-            Pass2 = 3030
-        }
-        
-        
-        
         
         public static int Userid
         {
             set
             {
-                if(Userid == 1 && Userid == 2)
+                if (value == 1 ||  value == 2)
                 {
+                    _userId = value;
                     Console.WriteLine("Access Granted");
+                    Console.WriteLine("Welcome User {0} ", Userid);
                     Console.WriteLine("Loading Data..");
                 }
+                else
+                {
+                    Console.WriteLine("Checkin ....");
+                    Console.WriteLine("Access not granted");
+                    
+                }
 
-                _userId = value;
+                
+
+
             }
 
             get
@@ -55,7 +56,7 @@ namespace Registration_Hernan
                         _path = "TextFile2.txt";
                         break;
                     default:
-                        Console.WriteLine("Wrong File Chosen");
+                        Console.WriteLine("File Doesn't Exist");
                         break;
                 }
             }
