@@ -78,7 +78,6 @@ namespace Registration_Hernan
             {
                 Console.WriteLine("Eligio un usuario inexistente, saliendo del programa ");
                 
-                
             }
         }
     }
