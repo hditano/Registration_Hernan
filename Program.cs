@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
+using System.Data.OleDb;
 using System.Linq;
 using System.Net.Mime;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +29,7 @@ namespace Registration_Hernan
                     })
                 }),
             });
-
+            
             var prueba = new Window ("Prueba") {
                 X = 0,
                 Y = 1,
@@ -40,7 +43,7 @@ namespace Registration_Hernan
                 Height = 13,
                 
             };
-            var winBottomLeft = new Window ("2nd Win") {
+            var winBottomLeft = new Window ("Database Content") {
                 X = 69,
                 Y = 14,
                 Width = 50,
@@ -81,57 +84,78 @@ namespace Registration_Hernan
                 Height = 1,
             };
             prueba.Add(password);
+            
+            var buttonAccept = new Button("Ok")
+            {
+                X = 10,
+                Y = 19
+            };
+            prueba.Add(buttonAccept);
+            
 
-            ustring unum = "";
+            // Display Information Controls
+
+
             var UserNumber = new Label("Welcome User #:")
+                {
+                    X = 6,
+                    Y = 1,
+                    Width = 20,
+                    Height = 1
+                };
+            win.Add(UserNumber);
+            
+                var userLabel = new Label("")
+                {
+                    X = 20,
+                    Y = 1
+                };
+            win.Add(userLabel);
+                
+                // Envia una accion al boton
+                
+            
+            
+            // Database Content Controls
+            var dbTotalRecords = new Label("Total Records: ")
             {
                 X = 6,
-                Y = 1,
+                Y = 4,
                 Width = 20,
                 Height = 1
             };
-            var userLabel = new Label("")
+            win.Add(dbTotalRecords);
+            
+            var dbLabelRecords = new Label("Prueba")
             {
                 X = 20,
-                Y = 1
+                Y = 4,
+
             };
+            win.Add(dbLabelRecords);
             
-            // Agrega los elementos al cuadrado correspondiente en este caso win
-                win.Add(UserNumber,userLabel);
-            
-            
-            var buttonAccept = new Button(10,19,"Ok");
-            
-            GuiClass myGui = new GuiClass();
-            // Envia una accion al boton
-            buttonAccept.Clicked = () => userLabel.Text = myGui.UserCheck(username.Text.ToString() , password.Text.ToString()) ;
-            prueba.Add(buttonAccept);
-
-            // Add both menu and win in a single call
-            Application.Top.Add ( menu, prueba, win, winBottomLeft);
-            Application.Run ();
-
-
-
-
-
-            /*do
+            ListView myList =  new ListView(new Rect(1, 1, 16, 4), new string[]
             {
-                
-                Console.WriteLine("Welcome to the Registry System. Please Choose an User: ");
-                eleccion = Console.ReadLine();
-                Console.WriteLine("Please type in your Password: ");
-                password = Console.ReadLine();
-                Users.Userid = Convert.ToInt32(eleccion);
-                Users.Path = eleccion;
-                Users.ChequearDatos(Users.Userid);
-                
+                "Prueba una",
+                "Prueba dos",
+                "Prueba tres"
+            });
+            winBottomLeft.Add( myList);
+            
+            MainMenu myTotalRecords = new MainMenu();
+            GuiClass myGui = new GuiClass();
+            buttonAccept.Clicked = () =>
+            {
+                userLabel.Text = (myGui.UserCheck(username.Text.ToString(), password.Text.ToString()));
+                dbLabelRecords.Text = myTotalRecords.DTotalRecords(username.Text.ToString());
+            };
 
 
-            } while ((eleccion != "1") && (eleccion != "2"));*/
 
-
+                Application.Top.Add(win,prueba,  winBottomLeft);
+            Application.Run();
         }
+        
     }
     
 }
