@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using NStack;
 using Terminal.Gui;
 using Terminal.Gui.Elmish;
 
@@ -31,7 +33,7 @@ namespace Registration_Hernan
                 Width = 69,
                 Height = Dim.Fill(),
             };
-            var win = new Window ("Hello") {
+            var win = new Window ("Display Information") {
                 X = 69,
                 Y = 1,
                 Width = 50,
@@ -70,24 +72,39 @@ namespace Registration_Hernan
             };
             prueba.Add (labelPass);
 
-            var password = new TextField ("") {
+            var password = new TextField ("") 
+            {
+                Secret = true,
                 X = 10 ,
                 Y = 2,
                 Width = 5,
                 Height = 1,
-                
-                
-                
+            };
+            prueba.Add(password);
+
+            ustring unum = "";
+            var UserNumber = new Label("Welcome User #:")
+            {
+                X = 6,
+                Y = 1,
+                Width = 20,
+                Height = 1
+            };
+            var userLabel = new Label("")
+            {
+                X = 20,
+                Y = 1
             };
             
-            prueba.Add(password);
+            // Agrega los elementos al cuadrado correspondiente en este caso win
+                win.Add(UserNumber,userLabel);
             
             
             var buttonAccept = new Button(10,19,"Ok");
             
             GuiClass myGui = new GuiClass();
             // Envia una accion al boton
-            buttonAccept.Clicked = () => password.Text = myGui.Test(password.ToString() ) ;
+            buttonAccept.Clicked = () => userLabel.Text = myGui.UserCheck(username.Text.ToString() , password.Text.ToString()) ;
             prueba.Add(buttonAccept);
 
             // Add both menu and win in a single call
