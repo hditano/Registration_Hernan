@@ -4,6 +4,8 @@ using System.IO;
 using System.Management.Instrumentation;
 using System.Reflection;
 using System.Text;
+using Terminal.Gui;
+using Terminal.Gui.Elmish;
 
 namespace Registration_Hernan
 {
@@ -12,7 +14,7 @@ namespace Registration_Hernan
         // Proprieties
 
 
-        public static void DRecords(int user, string file)
+        public static void DRecords(int user, string path)
         {
         
             
@@ -60,6 +62,7 @@ namespace Registration_Hernan
         {
             int _TotalRecords = 0;
             var totalRecords = File.ReadAllLines(Users.Path);
+            
             for (int i = 0; i < totalRecords.Length; i++)
             {
                 _TotalRecords++;

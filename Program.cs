@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
 using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Net.Mime;
 using System.Runtime.CompilerServices;
@@ -21,101 +22,105 @@ namespace Registration_Hernan
         static void Main()
         {
 
-            Application.Init ();
-            var menu = new MenuBar (new MenuBarItem [] {
-                new MenuBarItem ("_File", new MenuItem [] {
-                    new MenuItem ("_Quit", "", () => { 
-                        Application.RequestStop (); 
-                    })
+            Application.Init();
+            var menu = new MenuBar(new MenuBarItem[]
+            {
+                new MenuBarItem("_File", new MenuItem[]
+                {
+                    new MenuItem("_Quit", "", () => { Application.RequestStop(); })
                 }),
             });
-            
-            var prueba = new Window ("Prueba") {
+
+            var prueba = new Window("Prueba")
+            {
                 X = 0,
                 Y = 1,
                 Width = 69,
                 Height = Dim.Fill(),
             };
-            var win = new Window ("Display Information") {
+            var win = new Window("Display Information")
+            {
                 X = 69,
                 Y = 1,
                 Width = 50,
                 Height = 13,
-                
+
             };
-            var winBottomLeft = new Window ("Database Content") {
+            var winBottomLeft = new Window("Database Content")
+            {
                 X = 69,
                 Y = 14,
                 Width = 50,
                 Height = 15,
             };
-            
-            
-            var labelUser = new Label ("Username: ") {
+
+
+            var labelUser = new Label("Username: ")
+            {
                 X = 1,
                 Y = 1,
                 Width = 20,
                 Height = 1
             };
-            prueba.Add (labelUser);
+            prueba.Add(labelUser);
 
-            var username = new TextField ("") {
+            var username = new TextField("")
+            {
                 X = 10,
                 Y = 1,
                 Width = 3,
                 Height = 1
             };
-            prueba.Add (username);
+            prueba.Add(username);
 
-            var labelPass = new Label ("Password: ") {
+            var labelPass = new Label("Password: ")
+            {
                 X = 1,
                 Y = 2,
                 Width = 20,
                 Height = 1
             };
-            prueba.Add (labelPass);
+            prueba.Add(labelPass);
 
-            var password = new TextField ("") 
+            var password = new TextField("")
             {
                 Secret = true,
-                X = 10 ,
+                X = 10,
                 Y = 2,
                 Width = 5,
                 Height = 1,
             };
             prueba.Add(password);
-            
+
             var buttonAccept = new Button("Ok")
             {
                 X = 10,
                 Y = 19
             };
             prueba.Add(buttonAccept);
-            
+
 
             // Display Information Controls
 
 
             var UserNumber = new Label("Welcome User #:")
-                {
-                    X = 6,
-                    Y = 1,
-                    Width = 20,
-                    Height = 1
-                };
+            {
+                X = 6,
+                Y = 1,
+                Width = 20,
+                Height = 1
+            };
             win.Add(UserNumber);
-            
-                var userLabel = new Label("")
-                {
-                    X = 20,
-                    Y = 1
-                };
+
+            var userLabel = new Label("")
+            {
+                X = 20,
+                Y = 1
+            };
             win.Add(userLabel);
-                
-                // Envia una accion al boton
-                
-            
-            
+
+
+
             // Database Content Controls
             var dbTotalRecords = new Label("Total Records: ")
             {
@@ -125,35 +130,69 @@ namespace Registration_Hernan
                 Height = 1
             };
             win.Add(dbTotalRecords);
-            
-            var dbLabelRecords = new Label("Prueba")
+
+            var dbLabelRecords = new Label("")
             {
                 X = 20,
                 Y = 4,
 
             };
             win.Add(dbLabelRecords);
-            
-            ListView myList =  new ListView(new Rect(1, 1, 16, 4), new string[]
-            {
-                "Prueba una",
-                "Prueba dos",
-                "Prueba tres"
-            });
-            winBottomLeft.Add( myList);
-            
+
+            // External methods that get draw.
+
+
             MainMenu myTotalRecords = new MainMenu();
             GuiClass myGui = new GuiClass();
             buttonAccept.Clicked = () =>
             {
                 userLabel.Text = (myGui.UserCheck(username.Text.ToString(), password.Text.ToString()));
-                dbLabelRecords.Text = myTotalRecords.DTotalRecords(username.Text.ToString());
+                dbLabelRecords.Text =
+                    myTotalRecords.DTotalRecords(myGui.DisplayInformationCheck(username.Text.ToString(),
+                        password.Text.ToString()));
+            };
+            // Llmar al metodo y pasarle a que view pertenece
+
+            if (dbLabelRecords.Text == "")
+            {
+                myList(winBottomLeft);
+            }
+            
+
+
+            
+
+
+            // Hacerlo Correr
+            Application.Top.Add(win, prueba, winBottomLeft);
+            Application.Run();
+        }
+
+        static void myList(View winBottomLeft) // Agregar a que view Pertenece
+        {
+           var animals = new List<string>(File.ReadAllLines("TextFile1.txt"));
+            var msg = new Label(Path.GetFileName(Users.Path))
+            {
+                X = 1,
+                Y = 1,
+                Width = Dim.Fill() - 1,
+                Height = 1
             };
 
+            var list = new ListView(animals)
+            {
+                X = 1,
+                Y = 3,
+                Width = Dim.Fill() - 4,
+                Height = Dim.Fill() - 4,
+                AllowsMarking = true,
 
 
-                Application.Top.Add(win,prueba,  winBottomLeft);
-            Application.Run();
+            };
+            // Agregar que vista ver
+            winBottomLeft.Add(msg,list);
+            
+
         }
         
     }
